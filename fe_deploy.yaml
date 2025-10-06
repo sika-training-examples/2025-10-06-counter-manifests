@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-fe
+spec:
+  revisionHistoryLimit: 0
+  replicas: 4
+  selector:
+    matchLabels:
+      app: counter-fe
+  template:
+    metadata:
+      labels:
+        app: counter-fe
+    spec:
+      containers:
+        - name: counter-fe
+          image: ghcr.io/ondrejsika/counter-frontend
+          env:
+            - name: API_ORIGIN
+              value: http://counter-be
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi

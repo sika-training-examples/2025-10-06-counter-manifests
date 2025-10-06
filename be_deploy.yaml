@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-be
+spec:
+  revisionHistoryLimit: 0
+  replicas: 4
+  selector:
+    matchLabels:
+      app: counter-be
+  template:
+    metadata:
+      labels:
+        app: counter-be
+    spec:
+      containers:
+        - name: counter-be
+          image: ghcr.io/ondrejsika/counter
+          env:
+            - name: REDIS
+              value: redis
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 30Mi
