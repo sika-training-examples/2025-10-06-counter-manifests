@@ -13,6 +13,13 @@ spec:
       labels:
         app: counter-fe
     spec:
+      initContainers:
+        - name: wait-for-be
+          image: sikalabs/slu:v0.91.0
+          args:
+            - /bin/sh
+            - -c
+            - slu wait-for tcp -a counter-be:80
       containers:
         - name: counter-fe
           image: ghcr.io/ondrejsika/counter-frontend

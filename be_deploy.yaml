@@ -19,6 +19,8 @@ spec:
           env:
             - name: REDIS
               value: redis
+            - name: SLOW_START
+              value: '20'
           ports:
             - containerPort: 80
           resources:
