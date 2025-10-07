@@ -26,8 +26,14 @@ spec:
           env:
             - name: API_ORIGIN
               value: http://counter-be
+            - name: BACKGROUND_COLOR
+              value: lightblue
           ports:
             - containerPort: 3000
+          startupProbe:
+            httpGet:
+              path: /api/livez
+              port: 3000
           resources:
             requests:
               cpu: 50m

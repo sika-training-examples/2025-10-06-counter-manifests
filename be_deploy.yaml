@@ -17,10 +17,16 @@ spec:
         - name: counter-be
           image: ghcr.io/ondrejsika/counter
           env:
+            - name: EXTRA_TEXT
+              value: v2
             - name: REDIS
               value: redis
             - name: SLOW_START
               value: '20'
+          startupProbe:
+            httpGet:
+              path: /livez
+              port: 80
           ports:
             - containerPort: 80
           resources:
