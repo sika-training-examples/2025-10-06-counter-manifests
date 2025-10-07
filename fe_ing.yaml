@@ -5,7 +5,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
   tls:
     - hosts:
         - counter.lab0.sikademo.com
