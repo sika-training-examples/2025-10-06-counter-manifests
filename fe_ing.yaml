@@ -13,6 +13,9 @@ spec:
     - hosts:
         - counter.k8s.sikademo.com
       secretName: counter.k8s.sikademo.com-tls
+    - hosts:
+        - counter-manifests.wo1.sikademo.com
+      secretName: counter-manifests.wo1.sikademo.com-tls
   rules:
     - host: counter.lab0.sikademo.com
       http:
@@ -25,6 +28,16 @@ spec:
                 port:
                   number: 80
     - host: counter.k8s.sikademo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: counter-fe
+                port:
+                  number: 80
+    - host: counter-manifests.wo1.sikademo.com
       http:
         paths:
           - path: /
